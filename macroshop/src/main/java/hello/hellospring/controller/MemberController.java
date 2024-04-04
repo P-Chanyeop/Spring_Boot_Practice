@@ -10,6 +10,18 @@ public class MemberController {
 
     // 스프링 컨테이너에 존재하는 controller 객체를 받아와 사용할 수 있도록 해야한다.
     // => 이게 그 유명한 DI(Dependency Injection)이다. 의존관게를 밖에서(스프링이) 주입
+    // DI에는 필드주입, setter 주입, 생성자 주입이 존재한다. 의존관계가 실행중에 동적으로 변하는 경우는 거의없으므로 생성자 주입을 권장한다.
+
+    // 필드주입. 수정자 주입과 같은 이미 로드된 상태에서의 바꿔치기가 불가능하다. 생성자 주입의 경우는 컨테이너 의존없이 테스트할 때 객체를 주입할 수 있다는 점이 있다.
+//    @Autowired private MemberService memberService;
+
+    // setter 주입. public 하게 노출되기 때문에, 비추천
+//     private MemberService memberService;
+//    @Autowired
+//    public void setMemberService(MemberService memberService) {
+//        this.memberService = memberService;
+//    }
+
     private final MemberService memberService;
 
     @Autowired  // 생성자에 Autowired가 있으면 스프링 컨테이너에 있는 memberService를 가져다 연결시켜준다.

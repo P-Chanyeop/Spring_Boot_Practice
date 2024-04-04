@@ -8,7 +8,7 @@ import java.util.List;
 import java.util.Optional;
 
 
-@Repository   // 해당 애너테이션이 있어야 스프링 컨테이너에 등록이 된다.
+
 public interface MemberRepository {
 
     Member save(Member member);

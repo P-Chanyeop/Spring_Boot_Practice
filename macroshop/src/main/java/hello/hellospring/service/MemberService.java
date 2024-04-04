@@ -10,7 +10,7 @@ import java.util.List;
 import java.util.Optional;
 
 
-@Service    // 해당 애너테이션이 있어야 스프링 컨테이너에 등록이 된다.
+//@Service    // 해당 애너테이션이 있어야 스프링 컨테이너에 등록이 된다.
 // command + shift + t or ctrl + shift + t . 테스트 코드 생성 단축키
 public class MemberService {
 
@@ -18,7 +18,12 @@ public class MemberService {
     // 즉, Test와 Service간에 동일한 레파지토리를 사용하여야 한다.
     private final MemberRepository memberRepository;
 
-    @Autowired
+//    @Autowired
+//    public MemberService(MemberRepository memberRepository) {
+//        this.memberRepository = memberRepository;
+//    }
+
+    // 자바 코드로 직접 빈에 등록하는 방법?
     public MemberService(MemberRepository memberRepository) {
         this.memberRepository = memberRepository;
     }
