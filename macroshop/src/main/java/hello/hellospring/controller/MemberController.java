@@ -1,9 +1,12 @@
 package hello.hellospring.controller;
 
 
+import hello.hellospring.domain.Member;
 import hello.hellospring.service.MemberService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PostMapping;
 
 @Controller // 애너테이션이 존재하면 스프링 컨테이너에 Controller 객체(빈)을 생성하여 담아두고, 그것을 스프링 컨테이너가 관리하게된다.
 public class MemberController {
@@ -27,5 +30,21 @@ public class MemberController {
     @Autowired  // 생성자에 Autowired가 있으면 스프링 컨테이너에 있는 memberService를 가져다 연결시켜준다.
     public MemberController(MemberService memberService) {  // service가 순수한 자바 코드의 경우 스프링 컨테이너가 service를 인식하지 못해 에러가 발생.
         this.memberService = memberService;
+    }
+
+    @GetMapping("/members/new")
+    public String createForm() {
+        return "members/createMemberForm.html";
+    }
+
+    @PostMapping("/members/new")
+    public String create(MemberForm form) {
+        Member member = new Member();
+        member.setName(form.getName());
+
+        System.out.println("member = " + member.getName());
+        memberService.join(member);
+
+        return "redirect:/";
     }
 }
